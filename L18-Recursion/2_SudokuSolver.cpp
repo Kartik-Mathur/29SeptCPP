@@ -80,7 +80,9 @@ int main() {
 		{0, 0, 0, 0, 8, 0, 0, 7, 9}
 	};
 
-	sudokuSolver(mat, 0, 0, 9);
+	if (!sudokuSolver(mat, 0, 0, 9)) {
+		cout << "Couldn't solve sudoku\n";
+	}
 
 	return 0;
 }
