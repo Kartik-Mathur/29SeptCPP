@@ -22,7 +22,7 @@ class hashmap {
 		for (int i = 0; i < key.size(); ++i)
 		{
 			ans += ( (key[i] % ts) * (mul % ts) ) % ts;
-			mul *= 23;
+			mul *= 59;
 			mul %= ts;
 		}
 
@@ -49,7 +49,6 @@ class hashmap {
 				head = head->next;
 			}
 
-			cout << endl;
 		}
 
 	}
@@ -97,13 +96,44 @@ public:
 			cout << endl;
 		}
 	}
+
+	node* search(string key) {
+		int indx = hashFunction(key);
+		node* head = a[indx];
+
+		while (head) {
+			if (head->key == key) return head;
+
+			head = head->next;
+		}
+
+		return NULL;
+	}
+
+	int& operator[](string key) {
+		node* x = search(key);
+
+		if (!x) {
+			int garbage;
+			insert(key, garbage);
+			x = search(key);
+		}
+
+		return x->value;
+	}
+
 };
 
 int main() {
 
 	hashmap h;
 
-	h.insert("Mango", 100);
+	// h.insert("Mango", 100);
+	// Another way to perform
+	h["Mango"] = 100; // Insertion
+	h["Mango"] = 120; // Updation
+	cout << h["Mango"] << endl; // Print
+
 	h.insert("Apple", 120);
 	h.insert("Kiwi", 80);
 	h.insert("Pineapple", 30);
@@ -112,6 +142,9 @@ int main() {
 	h.insert("Guava", 60);
 
 	h.print();
+
+
+
 
 	return 0;
 }
