@@ -125,26 +125,30 @@ public:
 };
 
 int main() {
-
 	hashmap h;
-
 	// h.insert("Mango", 100);
 	// Another way to perform
-	h["Mango"] = 100; // Insertion
-	h["Mango"] = 120; // Updation
-	cout << h["Mango"] << endl; // Print
+	// h["Mango"] = 100; // Insertion
+	// h["Mango"] = 120; // Updation
+	// cout << h["Mango"] << endl; // Print
+	// h.insert("Apple", 120);
+	// h.insert("Kiwi", 80);
+	// h.insert("Pineapple", 30);
+	// h.insert("Dragonfruit", 90);
+	// h.insert("Orange", 190);
+	// h.insert("Guava", 60);
 
-	h.insert("Apple", 120);
-	h.insert("Kiwi", 80);
-	h.insert("Pineapple", 30);
-	h.insert("Dragonfruit", 90);
-	h.insert("Orange", 190);
-	h.insert("Guava", 60);
+	int n;
+	cin >> n;
+	for (int i = 0; i < n; ++i)
+	{
+		string key; int value;
+		cin >> key >> value;
+
+		h[key] = value;
+	}
 
 	h.print();
-
-
-
 
 	return 0;
 }
