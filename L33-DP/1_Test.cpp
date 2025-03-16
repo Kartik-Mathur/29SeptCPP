@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 int coinExchange(int amt, int *coins, int n) {
@@ -37,6 +38,34 @@ int topDown(int amt, int *coins, int n, int *dp) {
 	return dp[amt] = ans;
 }
 
+int bottomUp(int totalAmount, int *coins, int n) {
+	vector<int> dp(totalAmount + 1, INT_MAX);
+
+	dp[0] = 0;
+	for (int amt = 1; amt <= totalAmount; ++amt)
+	{
+		int ans = INT_MAX;
+		for (int i = 0; i < n; ++i)
+		{
+			if (amt >= coins[i]) {
+				int choti_amt = amt - coins[i];
+				if (dp[choti_amt] != INT_MAX) {
+					ans = min(ans, dp[choti_amt] + 1);
+				}
+			}
+		}
+
+		dp[amt] = ans;
+	}
+
+	// for (int i = 0; i < dp.size(); ++i)
+	// {
+	// 	cout << dp[i] << " ";
+	// }
+
+	return dp[totalAmount];
+}
+
 int main() {
 
 	int coins[] = {1, 7, 10};
@@ -46,6 +75,7 @@ int main() {
 	memset(dp, -1, sizeof dp);
 
 	cout << topDown(15, coins, n, dp) << endl;
+	cout << bottomUp(15, coins, n) << endl;
 	cout << coinExchange(15, coins, n) << endl;
 
 
