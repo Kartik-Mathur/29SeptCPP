@@ -1,0 +1,17 @@
+// 1. Go to Tools > Build System > New Build System
+// 2. Create a file by name C++17.sublime-build
+// 3. Add the code below inside the file and save it
+{
+ "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_path}/${file_base_name}\" && \"${file_path}/${file_base_name}\"",
+     "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+     "working_dir": "${file_path}",
+     "selector": "source.c, source.c++",
+     "variants":
+     [
+      
+       {
+         "name": "Run",
+        "shell_cmd": "g++ -std=c++17 \"${file}\" -o \"${file_path}/${file_base_name}\" && \"${file_path}/${file_base_name}\""
+       }
+     ]
+    }
